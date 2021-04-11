@@ -25,11 +25,12 @@ int main(){
             buff.dest = 0;
             _trigger << buff;
         }
-        // Test with gcc
-        testblock<axis>(_trigger, _result_gcc);
+
         // Test with hls
+        testblock_fpga(_trigger, _result_hls);
+        // Test with gcc
         _trigger >> _buff;
-        testblock_fpga(_buff, _result_hls);
+        testblock<axis>(_result_gcc, _buff);
 
         std::cout << "times : " << j << std::endl;
         std::cout << "_result_gcc : [";
